@@ -1,0 +1,16 @@
+{% block extends %}
+{{ "{% extends '::base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ '{% block title %}'}}{{ entity }}{{ ' edit{% endblock %}' }}
+{{ '{% block page_header %}'}}{{ entity }}{{ ' edit{% endblock %}' }}
+{{ '{% block jarvis_top_bar %}{% endblock %}' }}
+{{ "{% block body -%}" }}
+
+    {{ '{{ form(edit_form) }}' }}
+
+    {% set hide_edit, hide_delete = true, false %}
+    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+{{ "{% endblock %}" }}
+{% endblock body %}

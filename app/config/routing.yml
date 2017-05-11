@@ -1,0 +1,7 @@
+telus_example_my:
+    resource: "@TelusExampleMyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

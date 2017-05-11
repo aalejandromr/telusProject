@@ -1,0 +1,82 @@
+{% block extends %}
+    {{ "{% extends '::base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+    {{ '{% block title %}'}}{{ entity }}{{ '{% endblock %}' }}
+    {{ '{% block page_header %}'}}{{ entity }}{{ '{% endblock %}' }}
+    {{ '{% block jarvis_top_bar %}{% endblock %}' }}
+    {{ "{% block body -%}" }}
+    <div class="fluid-container">
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- row-fluid -->
+
+            <div class="row-fluid">
+                <article class="span12">
+                    <!-- new widget -->
+                    <div class="jarviswidget" id="widget-id-0">
+                        <header></header>
+                        <!-- wrap div -->
+                        <div>
+
+                            <div class="jarviswidget-editbox">
+                                <div>
+                                    <label>Title:</label>
+                                    <input type="text" />
+                                </div>
+                                <div>
+                                    <label>Styles:</label>
+                                    <span data-widget-setstyle="purple" class="purple-btn"></span>
+                                    <span data-widget-setstyle="navyblue" class="navyblue-btn"></span>
+                                    <span data-widget-setstyle="green" class="green-btn"></span>
+                                    <span data-widget-setstyle="yellow" class="yellow-btn"></span>
+                                    <span data-widget-setstyle="orange" class="orange-btn"></span>
+                                    <span data-widget-setstyle="pink" class="pink-btn"></span>
+                                    <span data-widget-setstyle="red" class="red-btn"></span>
+                                    <span data-widget-setstyle="darkgrey" class="darkgrey-btn"></span>
+                                    <span data-widget-setstyle="black" class="black-btn"></span>
+                                </div>
+                            </div>
+
+                            <div class="inner-spacer"> 
+                                <!-- content goes here -->
+                                <table class="table text-left table-hover record_properties">
+                                    <tbody>
+                                        {%- for field, metadata in fields %}
+
+                                        <tr>
+                                            <th>{{ field|capitalize }}</th>
+
+                                            {%- if metadata.type in ['date', 'datetime'] %}
+
+                                            <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}' }}</td>
+
+                                            {%- else %}
+
+                                            <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+                                            {%- endif %}
+
+                                        </tr>
+
+                                        {%- endfor %}
+
+                                    </tbody>
+                                </table>
+                                <!-- end content-->
+                            </div>
+                            <!-- end wrap div -->
+                        </div>
+                        <!-- end widget -->
+                </article>
+            </div>						
+            <!-- end row-fluid -->
+        </section>
+        <!-- end widget grid -->
+    </div>
+    {% set hide_edit, hide_delete = false, false %}
+    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+    {{ "{% endblock %}" }}
+{% endblock body %}

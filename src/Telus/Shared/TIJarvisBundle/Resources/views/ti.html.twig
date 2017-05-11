@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+{% include 'TIJarvisBundle::css.inc.twig' %}
+{% block stylesheets %}{% endblock %}
+        
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    </head>
+
+    <div class="header-wrap">
+        <div class="contained">
+            <div id="logos">
+                <div id="logo"></div>
+                <div id="account-logo"></div>
+            </div>
+            <div id="application_name">{% block jarvis_application_name %}{% endblock %}</div>
+        </div>
+    </div>
+
+    <body>
+        <!-- .height-wrapper -->
+        <div class="height-wrapper">
+
+            <!-- header -->
+            <header>
+                <!-- tool bar -->
+                <div id="header-toolbar" class="container-fluid">
+                    <!-- .contained -->
+                    <div class="contained">
+
+                        <!-- theme name -->
+                        <h1>{% block jarvis_top_bar %}jarvis_top_bar{% endblock %}</h1>
+                        <!-- end theme name -->
+
+                    </div>
+                    <!-- end .contained -->
+                </div>
+                <!-- end tool bar -->
+
+            </header>
+            <!-- end header -->
+
+            <div id="main" role="main" class="container-fluid">
+
+                <div class="contained">
+                    <!-- aside -->	
+                    <aside>	
+
+                        <!-- search box -->
+                        <div class="main-search">
+                            <label for="main-search"><i class="icon-search"></i></label>
+                            <input id="main-search" type="text" placeholder="Search...">
+                        </div>
+                        <div class="divider"></div>
+                        <!-- end search box -->
+
+                        <!-- aside item: Mini profile -->
+                        <div class="my-profile">
+                            <span class="first-child">Welcome <strong>
+                                    {% if app.user is null %}
+                                        Anonymous
+                                    {% else %}
+                                        {{ app.user.username }}
+                                        <span><a href="{{ app.request.baseUrl }}/profile">Edit Profile</a></span>
+                                    {% endif %}
+                                </strong></span>
+                            
+                        </div>
+                        <div class="divider"></div>
+                        <!-- end aside item: Mini profile -->
+
+                        <!-- aside item: Menu -->
+                        
+                        {% include 'TIJarvisBundle::menu.inc.twig' %}
+   
+                        {% block jarvis_left %}
+                        {% include 'TIJarvisBundle::left.inc.twig' %}
+                        {% endblock %}
+                    </aside>
+                    <!-- aside end -->
+
+                    <!-- main content -->
+                    <div id="page-content">
+
+                        <!-- page header -->
+                        <h1 id="page-header">{% block page_header %}Dashboard{% endblock %}</h1>
+
+                        <div class="fluid-container">
+                            {% block body %}{% endblock %}
+                        </div>
+                    </div>
+                    <!-- end main content -->
+
+                    <!-- aside right on high res -->
+                    <aside class="right">
+                        {% block jarvis_right %}
+                        {% include 'TIJarvisBundle::right.inc.twig' %}
+                        {% endblock %}
+                        <!-- <div class="divider"></div> -->
+                    </aside>
+
+                    <!-- end aside right -->
+                </div>
+
+            </div><!--end fluid-container-->
+            <div class="push"></div>
+        </div>
+        <!-- end .height wrapper -->
+
+        <!-- footer -->
+        <div id="footer">
+            <div id="footer-content">
+                <div class="footer-logo">		
+                </div>
+                <div id="footer-left">
+                    <div class="grid_main">
+                        © 2014 Developed by TELUS International – Information Services 
+                    </div>
+                </div>
+            </div>	
+        </div>
+        <!-- end footer -->
+        
+{% include 'TIJarvisBundle::js.inc.twig' %}
+{% block javascripts %}{% endblock %}
+    </body>
+</html>

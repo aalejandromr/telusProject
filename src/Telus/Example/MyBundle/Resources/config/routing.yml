@@ -1,0 +1,3 @@
+telus_example_my_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TelusExampleMyBundle:Default:index }

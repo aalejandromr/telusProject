@@ -1,0 +1,107 @@
+{% block extends %}
+    {{ "{% extends '::base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+    {{ '{% block title %}Data - '}}{{ entity }}{{ '{% endblock %}' }}
+    {{ '{% block page_header %}Data - '}}{{ entity }}{{ '{% endblock %}' }}
+    {{ '{% block jarvis_top_bar %}{% endblock %}' }}
+    {{ "{% block body -%}" }}
+    <div class="fluid-container">
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- row-fluid -->
+
+            <div class="row-fluid">
+                <article class="span12">
+                    <!-- new widget -->
+                    <div class="jarviswidget" id="widget-id-0">
+                        <header></header>
+                        <!-- wrap div -->
+                        <div>
+
+                            <div class="jarviswidget-editbox">
+                                <div>
+                                    <label>Title:</label>
+                                    <input type="text" />
+                                </div>
+                                <div>
+                                    <label>Styles:</label>
+                                    <span data-widget-setstyle="purple" class="purple-btn"></span>
+                                    <span data-widget-setstyle="navyblue" class="navyblue-btn"></span>
+                                    <span data-widget-setstyle="green" class="green-btn"></span>
+                                    <span data-widget-setstyle="yellow" class="yellow-btn"></span>
+                                    <span data-widget-setstyle="orange" class="orange-btn"></span>
+                                    <span data-widget-setstyle="pink" class="pink-btn"></span>
+                                    <span data-widget-setstyle="red" class="red-btn"></span>
+                                    <span data-widget-setstyle="darkgrey" class="darkgrey-btn"></span>
+                                    <span data-widget-setstyle="black" class="black-btn"></span>
+                                </div>
+                            </div>
+
+                            <div class="inner-spacer"> 
+                                <!-- content goes here -->
+
+                                <table class="table table-bordered table-striped responsive records_list" id="dtable">
+                                    <thead>
+                                        <tr>
+                                            {%- for field, metadata in fields %}
+
+                                            <th>{{ field|capitalize }}</th>
+
+                                            {%- endfor %}
+
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{ '{% for entity in entities %}' }}
+                                        <tr>
+
+                                            {%- for field, metadata in fields %}
+                                            {%- if loop.first and ('show' in actions) %}
+
+                                            <td><a href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</a></td>
+
+                                            {%- elseif metadata.type in ['date', 'datetime'] %}
+
+                                            <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
+
+                                            {%- else %}
+
+                                            <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+                                            {%- endif %}
+
+                                            {%- if loop.last %}
+
+                                            <td>
+                                                {%- include "crud/views/others/actions.html.twig.twig" %}
+                                            </td>
+
+                                            {%- endif %}
+                                            {%- endfor %}
+
+                                        </tr>
+                                        {{ '{% endfor %}' }}
+                                    </tbody>
+                                </table>
+                                <!-- end content-->
+                            </div>
+                            <!-- end wrap div -->
+                        </div>
+                        <!-- end widget -->
+                </article>
+            </div>						
+            <!-- end row-fluid -->
+        </section>
+        <!-- end widget grid -->
+    </div>
+    {% if 'new' in actions %}
+        <div class="form-actions">
+            <a href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}" class="btn medium btn-primary" id="post-btn-js">Create a new entry</a>
+        </div>
+    {% endif %}
+    {{ "{% endblock %}" }}
+{% endblock body %}

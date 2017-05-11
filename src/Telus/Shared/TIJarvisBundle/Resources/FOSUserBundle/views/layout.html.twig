@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        {% include 'TIJarvisBundle::css.inc.twig' %}
+    {% block stylesheets %}{% endblock %}
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<div class="header-wrap">
+    <div class="contained">
+        <div id="logos">
+            <div id="logo"></div>
+            <div id="account-logo"></div>
+        </div>
+        <div id="application_name">{% block jarvis_application_name %}{% endblock %}</div>
+    </div>
+</div>
+
+<body>
+    <!-- .height-wrapper -->
+    <div class="height-wrapper">
+
+        <!-- header -->
+        <header>
+
+
+        </header>
+        <!-- end header -->	
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+
+    </div>
+    <!-- end .height-wrapper -->	
+
+
+    <!-- footer -->
+    <div id="footer">
+        <div id="footer-content">
+            <div class="footer-logo">		
+            </div>
+            <div id="footer-left">
+                <div class="grid_main">
+                    © 2014 Developed by TELUS International – Information Services 
+                </div>
+            </div>
+        </div>	
+    </div>
+    <!-- end footer -->
+
+    {% include 'TIJarvisBundle::js.inc.twig' %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
+{# empty Twig template #}
