@@ -1,0 +1,50 @@
+<!-- widget grid -->
+<section id="widget-grid" class="">
+    <!-- row-fluid -->
+    <div class="row-fluid">
+        <article class="span12">
+            <!-- new widget -->
+            <div class="jarviswidget">
+                <header>
+                    <h2>Snippet created!. Here's the URL to share.</h2>                           
+                </header>
+                <!-- wrap div -->
+                <div>
+                    <div class="jarviswidget-editbox">
+                        <div>
+                            <label>Title:</label>
+                            <input type="text" />
+                        </div>
+                        <div>
+                            <label>Styles:</label>
+                            <span data-widget-setstyle="purple" class="purple-btn"></span>
+                            <span data-widget-setstyle="navyblue" class="navyblue-btn"></span>
+                            <span data-widget-setstyle="green" class="green-btn"></span>
+                            <span data-widget-setstyle="yellow" class="yellow-btn"></span>
+                            <span data-widget-setstyle="orange" class="orange-btn"></span>
+                            <span data-widget-setstyle="pink" class="pink-btn"></span>
+                            <span data-widget-setstyle="red" class="red-btn"></span>
+                            <span data-widget-setstyle="darkgrey" class="darkgrey-btn"></span>
+                            <span data-widget-setstyle="black" class="black-btn"></span>
+                        </div>
+                    </div>
+                    <div class="widget alert alert-info adjusted">
+                        <i class="cus-exclamation"></i>
+                        <strong>Helpful Hint:</strong> Did you know you can click on the <strong>URL</strong> to select all the text and then press Ctrl+C to copy it?
+                    </div>
+                    <fieldset>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input id=""type='text' class="span12" style="cursor: text" onclick="this.setSelectionRange(0, this.value.length)" readonly='readonly' value='{{ url('telus_example_my_snippet_view', { 'sid' : link }) }}' />                                
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- end wrap div -->
+            </div>
+            <!-- end widget -->
+        </article>
+    </div>						
+    <!-- end row-fluid -->
+</section>
+<!-- end widget grid -->

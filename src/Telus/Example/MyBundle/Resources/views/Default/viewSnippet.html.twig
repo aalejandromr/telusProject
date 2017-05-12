@@ -3,6 +3,7 @@
 {% block jarvis_top_bar %}TI PasteBin: The ultimate snippet sharing tool{% endblock %}
 {% block page_header %}TI PasteBin - Share your best codes!{% endblock %}
 {%- block javascripts -%}
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <script type="text/javascript">
         $(function() {
             $('#frmCreateNewSnippet').submit(function() {
@@ -16,9 +17,6 @@
     </script>
 {%- endblock -%}
 {% block body %}
-    {% if link is defined and link is not empty %}
-        {% include 'TelusExampleMyBundle:Default:snippetUrl.html.twig' %}
-    {% endif %}
     <div class="fluid-container">
         <!-- widget grid -->
         <section id="widget-grid" class="">
@@ -28,7 +26,7 @@
                     <!-- new widget -->
                     <div class="jarviswidget">
                         <header>
-                            <h2>New snippet</h2>                           
+                            <h2>Viewing {{ aPasteBin[0]['sf2PbFormat']['sf2FormatName'] }} snippet created @ {{ aPasteBin[0]['createdAt']|date('Y-m-d H:i:s') }}</h2>                           
                         </header>
                         <!-- wrap div -->
                         <div>
@@ -50,30 +48,10 @@
                                     <span data-widget-setstyle="black" class="black-btn"></span>
                                 </div>
                             </div>
-                            {% if link is defined and link is not empty %}
-                                <div class="widget alert alert-success adjusted">
-                                    <i class="cus-accept"></i>
-                                    <strong>Congratulations!</strong> Your last snippet was created sucesfully!. Would you like to create a new one?
-                                </div>
-                            {% endif %}
                             <div role="content" class="row-fluid inner-spacer widget-content-padding">
-                                <form id="frmCreateNewSnippet" action="{{ app.request.uri }}" method="post">
-                                    <textarea name="snippetText" class="span12 uniform" rows="20" placeholder="Paste your code or text here!"></textarea>
-                                    <br />
-                                    <div class="form-actions">
-                                        Syntax highlighting:&nbsp;
-                                        <select name="dataFormatId" class="btn medium">
-                                            {# We check that the variable aDataFormat is defined and that it's an array #}
-                                            {% if aDataFormat is defined and aDataFormat is iterable %}
-                                                {# This constructor is the same as PHP's foreach, but in a JS fashion. #}
-                                                {% for dataFormat in aDataFormat %}
-                                                    <option value="{{dataFormat.id}}">{{ dataFormat.sf2FormatName }}</option>
-                                                {% endfor %}
-                                            {% endif %}
-                                        </select>&nbsp;
-                                        <input class="btn medium btn-primary" name="createNewSnippet" type="submit" value="Share" />
-                                    </div>
-                                </form>
+                                <pre  class="prettyprint lang-{{ aPasteBin[0]['sf2PbFormat']['sf2FormatPrettyName'] }}">
+                                {{-  aPasteBin[0]['sf2PbData'] -}}
+                                </pre>                             
                             </div>
                         </div>
                         <!-- end wrap div -->
@@ -85,4 +63,9 @@
         </section>
         <!-- end widget grid -->
     </div>
+{% endblock %}
+{%- block jarvis_left -%}
+<div class="aside-buttons">
+    <a href="{{ app.request.baseUrl }}" title="" class="btn btn-primary">Create another snippet</a>
+</div>
 {% endblock %}
