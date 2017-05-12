@@ -5,3 +5,13 @@ telus_example_my_crud_pastebin:
 telus_example_my_homepage:
     path:     /
     defaults: { _controller: TelusExampleMyBundle:Default:index }
+
+telus_example_my_snippet_view:
+    path: /v/{sid}
+    defaults: { _controller: TelusExampleMyBundle:Default:viewSnippet}
+
+telus!_example_my_web_servide:
+    path: /ws/{id}
+    defaults: { _controller: TelusExampleMyBundle:Ws:Ws, id: 0}
+    requirements:
+         id: \d+
