@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Sf2PastebinSecurity edit{% endblock %}
+{% block page_header %}Sf2PastebinSecurity edit{% endblock %}
+{% block jarvis_top_bar %}{% endblock %}
+{% block body -%}
+
+    {{ form(edit_form) }}
+
+        <div class="form-actions">
+    <a class="btn medium" href="{{ path('crud_pastebin') }}">Regresar a la lista</a>
+    </div>
+<div class="form-actions">
+            {{ form(delete_form) }}
+    </div>
+{% endblock %}

@@ -1,3 +1,7 @@
+telus_example_my_crud_pastebin:
+    resource: "@TelusExampleMyBundle/Resources/config/routing/sf2pastebinsecurity.yml"
+    prefix:   /crud/pastebin
+
 telus_example_my_homepage:
     path:     /
     defaults: { _controller: TelusExampleMyBundle:Default:index }

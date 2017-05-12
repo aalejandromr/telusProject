@@ -1,0 +1,30 @@
+crud_pastebin:
+    pattern:  /
+    defaults: { _controller: "TelusExampleMyBundle:Sf2PastebinSecurity:index" }
+
+crud_pastebin_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TelusExampleMyBundle:Sf2PastebinSecurity:show" }
+
+crud_pastebin_new:
+    pattern:  /new
+    defaults: { _controller: "TelusExampleMyBundle:Sf2PastebinSecurity:new" }
+
+crud_pastebin_create:
+    pattern:  /create
+    defaults: { _controller: "TelusExampleMyBundle:Sf2PastebinSecurity:create" }
+    requirements: { _method: post }
+
+crud_pastebin_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TelusExampleMyBundle:Sf2PastebinSecurity:edit" }
+
+crud_pastebin_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TelusExampleMyBundle:Sf2PastebinSecurity:update" }
+    requirements: { _method: post|put }
+
+crud_pastebin_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TelusExampleMyBundle:Sf2PastebinSecurity:delete" }
+    requirements: { _method: post|delete }
