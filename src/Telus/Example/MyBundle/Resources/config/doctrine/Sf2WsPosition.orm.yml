@@ -1,0 +1,65 @@
+Telus\Example\MyBundle\Entity\Sf2WsPosition:
+    type: entity
+    table: sf2_ws_position
+    indexes:
+        wst_tag_pov_whur_id:
+            columns:
+                - swp_emp_id
+                - swp_pov_active
+        swp_pov_remote_id:
+            columns:
+                - swp_pov_remote_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        swpPovRemoteId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: swp_pov_remote_id
+        swpEngName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: swp_eng_name
+        swpSpnName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: swp_spn_name
+        swpEmpId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: swp_emp_id
+        swpPovActive:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: swp_pov_active
+        createdAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: updated_at
+    lifecycleCallbacks:
+            prePersist: [ setCreatedAtValue, setUpdatedAtValue ]
+            preUpdate: [ setUpdatedAtValue ]

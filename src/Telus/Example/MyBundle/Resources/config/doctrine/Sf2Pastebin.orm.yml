@@ -1,0 +1,72 @@
+Telus\Example\MyBundle\Entity\Sf2Pastebin:
+    type: entity
+    table: sf2_pastebin
+    indexes:
+        sf2_format_id:
+            columns:
+                - sf2_pb_format_id
+        sf2_pb_owner_id:
+            columns:
+                - sf2_pb_owner_id
+    uniqueConstraints:
+        sf2_hash:
+            columns:
+                - sf2_pb_hash
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        sf2PbOwnerId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: sf2_pb_owner_id
+        sf2PbHash:
+            type: string
+            nullable: false
+            length: 40
+            fixed: false
+            comment: ''
+            column: sf2_pb_hash
+        sf2PbEnabled:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: sf2_pb_enabled
+        createdAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: updated_at
+        sf2PbData:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: sf2_pb_data
+    manyToOne:
+        sf2PbFormat:
+            targetEntity: Sf2DataFormat
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sf2_pb_format_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedAtValue , setUpdatedAtValue ]
+        preUpdate: [ setUpdatedAtValue ]

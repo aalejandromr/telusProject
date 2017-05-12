@@ -1,0 +1,35 @@
+Telus\Example\MyBundle\Entity\Sf2PastebinSecurity:
+    type: entity
+    table: sf2_pastebin_security
+    indexes:
+        sf2_pbd_security_level:
+            columns:
+                - sf2_pbs_security_level
+        sf2_pbs_security_value:
+            columns:
+                - sf2_pbs_security_value
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        sf2PbsSecurityLevel:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            column: sf2_pbs_security_level
+        sf2PbsSecurityValue:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: sf2_pbs_security_value
+    lifecycleCallbacks: {  }

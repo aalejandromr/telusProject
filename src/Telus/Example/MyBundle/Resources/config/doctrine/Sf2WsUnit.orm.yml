@@ -1,0 +1,72 @@
+Telus\Example\MyBundle\Entity\Sf2WsUnit:
+    type: entity
+    table: sf2_ws_unit
+    indexes:
+        wst_uni_short_name:
+            columns:
+                - swu_uni_short_name
+                - swu_active
+                - swu_staff
+                - swu_parent_uni_id
+        swu_remote_id:
+            columns:
+                - swu_remote_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        swuRemoteId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: swu_remote_id
+        swuName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: swu_name
+        swuUniShortName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: swu_uni_short_name
+        swuActive:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: swu_active
+        swuStaff:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: swu_staff
+        swuParentUniId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: swu_parent_uni_id
+        createdAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: updated_at
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAtValue, setUpdatedAtValue ]
+        preUpdate: [ setUpdatedAtValue ]
