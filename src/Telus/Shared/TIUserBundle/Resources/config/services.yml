@@ -1,0 +1,7 @@
+parameters:
+#    ti_user.example.class: Telus\Shared\TIUserBundle\Example
+
+services:
+#    ti_user.example:
+#        class: %ti_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

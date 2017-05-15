@@ -17,6 +17,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new Telus\Shared\TIUserBundle\TIUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new FR3D\LdapBundle\FR3DLdapBundle,
             new Telus\Shared\TIJarvisBundle\TIJarvisBundle(),
             new Telus\Example\MyBundle\TelusExampleMyBundle(),
         );

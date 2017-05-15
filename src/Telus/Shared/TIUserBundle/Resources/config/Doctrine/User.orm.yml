@@ -1,0 +1,23 @@
+Telus\Shared\TIUserBundle\Entity\User:
+    type:  entity
+    table: fos_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        dn:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: dn
+        employeeid:
+            type: string
+            nullable: false
+            length: 15
+            fixed: false
+            comment: ''
+            column: employeeid

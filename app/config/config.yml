@@ -11,6 +11,7 @@ parameters:
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
+    translator: ~
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -80,3 +81,31 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Telus\Shared\TIUserBundle\Entity\User
+
+fr3d_ldap:
+    driver:
+        host:                172.17.133.10
+        port:                389
+        accountDomainName:   ti.ads
+        accountDomainNameShort: TI
+        accountCanonicalForm: 4
+        bindRequiresDn:      false
+        baseDn:              dc=ti,dc=ads
+        accountFilterFormat: (&(samaccountname=%s)) # sprintf
+        optReferrals:        false
+        useSsl:              false
+        useStartTls:         false
+        networkTimeout:      5
+    user:
+        baseDn: dc=ti,dc=ads
+        filter: #(&(ObjectClass=Person))
+        attributes:
+           - { ldap_attr: samaccountname,  user_method: setUsername }
+           - { ldap_attr: mail,   user_method: setEmail }
+           - { ldap_attr: mail,   user_method: setEmailCanonical }
+           - { ldap_attr: employeeid,   user_method: setEmployeeid }
